@@ -2,7 +2,7 @@ QT       += core gui network webenginecore
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++20
 
 RC_ICONS = resources/gfless_icon.ico
 
@@ -10,7 +10,7 @@ QMAKE_LFLAGS_WINDOWS += "/MANIFESTUAC:\"level='requireAdministrator' uiAccess='f
 
 LIBS += -lkernel32 -luser32 -lgdi32
 
-VERSION = 1.1.2
+VERSION = 1.1.3
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 INCLUDEPATH += ./src ./src/gui ./src/auth
