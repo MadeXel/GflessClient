@@ -14,6 +14,8 @@ class CaptchaSolver : public QObject
 public:
     explicit CaptchaSolver(const QString& challengeId, const QString& lang, SyncNetworAccesskManager *netManager, QObject *parent = nullptr);
 
+    QJsonObject getCaptchaInfo();
+
     bool getChallenge();
 
     bool sendAnswer(int answer);

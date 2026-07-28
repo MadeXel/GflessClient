@@ -8,7 +8,29 @@ CaptchaDialog::CaptchaDialog(const QString &gfChallengeId, SyncNetworAccesskMana
     ui->setupUi(this);
     captcha = new CaptchaSolver(gfChallengeId, QLocale().name().replace("_", "-"), netManager, this);
 
-    initImages();
+    auto captchaInfo = captcha->getCaptchaInfo();
+
+    QString type = captchaInfo.value("type").toString();
+    QString script = captchaInfo.value("script").toString();
+
+    if (type == "gf-image-drop-captcha") {
+        initImages();
+    }
+    else if (type == "gf-pow-captcha") {
+        QMessageBox::warning(
+            this,
+            "Unsupported type of captcha",
+            "The type of captcha you received is not supported\nYou need to resolve it using the gameforge client or your browser."
+        );
+    }
+    else {
+        QMessageBox::critical(
+            this,
+            "Unsupported type of captcha",
+            "Unsupported type of captcha\n\nType: " + type + "\nScript: " + script
+                + "\n\nYou need to resolve it using the gameforge client or your browser."
+        );
+    }
 }
 
 CaptchaDialog::~CaptchaDialog()
